@@ -5,8 +5,10 @@ public class UserRegistrationRequestDto {
     private String password;
     private String email;
 
-    public UserRegistrationRequestDto(String username) {
+    public UserRegistrationRequestDto(String username, String password, String email) {
         this.username = username;
+        this.password = password;
+        this.email = email;
     }
 
     public String getUsername() {
