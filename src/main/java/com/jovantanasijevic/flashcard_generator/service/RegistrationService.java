@@ -17,13 +17,11 @@ import java.util.HashSet;
 public class RegistrationService {
     private final UserDetailsManager userDetailsManager;
     private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public RegistrationService(UserDetailsManager userDetailsManager, PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository) {
+    public RegistrationService(UserDetailsManager userDetailsManager, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userDetailsManager = userDetailsManager;
         this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
 

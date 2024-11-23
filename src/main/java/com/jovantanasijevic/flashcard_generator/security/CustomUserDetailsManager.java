@@ -1,7 +1,6 @@
 package com.jovantanasijevic.flashcard_generator.security;
 
 import com.jovantanasijevic.flashcard_generator.domain.User;
-import com.jovantanasijevic.flashcard_generator.repository.RoleRepository;
 import com.jovantanasijevic.flashcard_generator.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,19 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-@Component
+@Service
 public class CustomUserDetailsManager implements UserDetailsManager {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public CustomUserDetailsManager(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public CustomUserDetailsManager(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -65,7 +60,7 @@ public class CustomUserDetailsManager implements UserDetailsManager {
                 .orElseThrow(
                         () -> new IllegalArgumentException("User " + username + " not found")
                 );
-        if (!passwordEncoder.matches(user.getPasswordHash(), passwordEncoder.encode(oldPassword))) {
+        if (!passwordEncoder.matches(oldPassword, user.getPasswordHash())) {
             throw new IllegalArgumentException("Incorrect password");
         }
         user.setPasswordHash(passwordEncoder.encode(newPassword));
