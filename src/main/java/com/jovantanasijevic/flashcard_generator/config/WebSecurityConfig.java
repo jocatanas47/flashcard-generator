@@ -23,7 +23,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.httpBasic(Customizer.withDefaults());
         http.authorizeHttpRequests(
-                request -> request.anyRequest().permitAll()
+                request -> request.requestMatchers("/register").anonymous()
+                        .anyRequest().authenticated()
         );
         http.csrf(
                 c -> c.disable()

@@ -3,6 +3,8 @@ package com.jovantanasijevic.flashcard_generator.security;
 import com.jovantanasijevic.flashcard_generator.domain.User;
 import com.jovantanasijevic.flashcard_generator.repository.RoleRepository;
 import com.jovantanasijevic.flashcard_generator.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,18 +35,41 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     }
 
     @Override
-    public void updateUser(UserDetails user) {
-
+    public void updateUser(UserDetails userDetails) {
+        if (!(userDetails instanceof CustomUserDetails customUserDetails)) {
+            throw new IllegalArgumentException("UserDetails must be an instance of CustomUserDetails");
+        }
+        User newUser = customUserDetails.getUser();
+        User oldUser = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(
+                        () -> new IllegalArgumentException("User " + userDetails.getUsername() + " not found")
+                );
+        newUser.setId(oldUser.getId());
+        userRepository.save(newUser);
     }
 
     @Override
     public void deleteUser(String username) {
-
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(
+                        () -> new IllegalArgumentException("User " + username + " not found")
+                );
+        userRepository.delete(user);
     }
 
     @Override
     public void changePassword(String oldPassword, String newPassword) {
-
+        SecurityContext context = SecurityContextHolder.getContext();
+        String username = context.getAuthentication().getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(
+                        () -> new IllegalArgumentException("User " + username + " not found")
+                );
+        if (!passwordEncoder.matches(user.getPasswordHash(), passwordEncoder.encode(oldPassword))) {
+            throw new IllegalArgumentException("Incorrect password");
+        }
+        user.setPasswordHash(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 
     @Override
