@@ -33,7 +33,7 @@ public class RegistrationService {
                 userRegistrationRequestDto.getPassword()
         ));
 
-        Role role = roleRepository.findByName("USER");
+        Role role = roleRepository.findByName("ROLE_USER");
         if (role == null) {
             throw new IllegalArgumentException("Role not found");
         }
