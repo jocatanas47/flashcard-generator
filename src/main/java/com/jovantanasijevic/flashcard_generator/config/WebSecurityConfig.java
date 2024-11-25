@@ -18,7 +18,7 @@ public class WebSecurityConfig {
         http.httpBasic(Customizer.withDefaults());
         http.authorizeHttpRequests(
                 request -> request.requestMatchers("/register").anonymous()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/user/**").hasAnyRole("USER")
         );
         http.csrf(
                 c -> c.disable()

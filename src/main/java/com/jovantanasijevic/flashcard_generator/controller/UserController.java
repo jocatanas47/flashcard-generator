@@ -21,6 +21,6 @@ public class UserController {
 
     @PatchMapping("/user/change_email")
     public void changeEmail(@RequestBody ChangeEmailDto changeEmailDto) {
-
+        userService.changeEmail(changeEmailDto);
     }
 }
