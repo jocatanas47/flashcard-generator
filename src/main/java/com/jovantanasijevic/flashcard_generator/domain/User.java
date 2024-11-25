@@ -35,7 +35,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "word_id")
     )
-    private Set<Role> dictionary = new HashSet<>();
+    private Set<Word> dictionary = new HashSet<>();
 
     public User() {}
 
@@ -79,11 +79,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<Role> getDictionary() {
+    public Set<Word> getDictionary() {
         return dictionary;
     }
 
-    public void setDictionary(Set<Role> dictionary) {
+    public void setDictionary(Set<Word> dictionary) {
         this.dictionary = dictionary;
     }
 }
