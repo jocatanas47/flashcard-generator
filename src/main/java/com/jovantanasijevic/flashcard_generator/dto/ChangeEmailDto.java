@@ -1,9 +1,11 @@
 package com.jovantanasijevic.flashcard_generator.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class ChangeEmailDto {
-    @Email
+    @NotBlank(message = "email is required")
+    @Email(message = "invalid email address")
     private String email;
 
     public String getEmail() {
