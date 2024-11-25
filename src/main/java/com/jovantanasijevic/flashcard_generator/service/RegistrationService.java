@@ -4,7 +4,6 @@ import com.jovantanasijevic.flashcard_generator.domain.Role;
 import com.jovantanasijevic.flashcard_generator.domain.User;
 import com.jovantanasijevic.flashcard_generator.dto.UserRegistrationRequestDto;
 import com.jovantanasijevic.flashcard_generator.repository.RoleRepository;
-import com.jovantanasijevic.flashcard_generator.repository.UserRepository;
 import com.jovantanasijevic.flashcard_generator.security.CustomUserDetails;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
