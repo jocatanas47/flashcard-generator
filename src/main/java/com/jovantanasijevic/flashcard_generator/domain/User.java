@@ -29,6 +29,14 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "dictionary",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "word_id")
+    )
+    private Set<Role> dictionary = new HashSet<>();
+
     public User() {}
 
     public Long getId() {
@@ -69,5 +77,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Role> getDictionary() {
+        return dictionary;
+    }
+
+    public void setDictionary(Set<Role> dictionary) {
+        this.dictionary = dictionary;
     }
 }
