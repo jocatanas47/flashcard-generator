@@ -28,6 +28,6 @@ public class UserController {
 
     @PostMapping("/user/load_dictionary")
     public void loadDictionary(@RequestBody List<String> words) {
-
+        userService.loadDictionary(words);
     }
 }
