@@ -60,6 +60,7 @@ public class UserService {
         wordRepository.saveAll(newWords);
 
         user.getDictionary().addAll(wordRepository.findByWordIn(words));
+        userRepository.save(user);
     }
 
     @Transactional
