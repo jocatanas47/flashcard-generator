@@ -30,4 +30,9 @@ public class UserController {
     public void loadDictionary(@RequestBody List<String> words) {
         userService.loadDictionary(words);
     }
+
+    @PostMapping("/user/process_sentences")
+    public List<String> processSentences(@RequestBody List<String> sentences) {
+        return userService.processSentences(sentences);
+    }
 }
