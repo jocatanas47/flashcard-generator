@@ -3,15 +3,15 @@ package com.jovantanasijevic.flashcard_generator.dto;
 import java.util.List;
 
 public class ProcessSentencesResponseDto {
-    private List<String> processedSentences;
+    private List<String> notes;
     private List<String> dictionary;
 
-    public List<String> getProcessedSentences() {
-        return processedSentences;
+    public List<String> getNotes() {
+        return notes;
     }
 
-    public void setProcessedSentences(List<String> processedSentences) {
-        this.processedSentences = processedSentences;
+    public void setNotes(List<String> notes) {
+        this.notes = notes;
     }
 
     public List<String> getDictionary() {
