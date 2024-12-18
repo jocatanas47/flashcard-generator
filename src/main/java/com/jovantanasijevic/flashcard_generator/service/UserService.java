@@ -80,10 +80,6 @@ public class UserService {
                 .body(requestDto)
                 .retrieve()
                 .body(ProcessSentencesResponseDto.class);
-        System.out.println(response);
-        System.out.println(response.getDictionary());
-        System.out.println(response.getNotes());
-
 
         loadDictionary(response.getDictionary());
         return response.getNotes();
