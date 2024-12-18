@@ -2,10 +2,7 @@ package com.jovantanasijevic.flashcard_generator.service;
 
 import com.jovantanasijevic.flashcard_generator.domain.User;
 import com.jovantanasijevic.flashcard_generator.domain.Word;
-import com.jovantanasijevic.flashcard_generator.dto.ChangeEmailDto;
-import com.jovantanasijevic.flashcard_generator.dto.ChangePasswordDto;
-import com.jovantanasijevic.flashcard_generator.dto.ProcessSentencesRequestDto;
-import com.jovantanasijevic.flashcard_generator.dto.ProcessSentencesResponseDto;
+import com.jovantanasijevic.flashcard_generator.dto.*;
 import com.jovantanasijevic.flashcard_generator.repository.UserRepository;
 import com.jovantanasijevic.flashcard_generator.repository.WordRepository;
 import com.jovantanasijevic.flashcard_generator.security.IAuthenticationFacade;
@@ -64,7 +61,7 @@ public class UserService {
     }
 
     @Transactional
-    public List<String> processSentences(List<String> sentences) {
+    public List<NoteDto> processSentences(List<String> sentences) {
         User user = getUser();
         Set<Word> dictionary = user.getDictionary();
 

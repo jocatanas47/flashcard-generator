@@ -3,14 +3,14 @@ package com.jovantanasijevic.flashcard_generator.dto;
 import java.util.List;
 
 public class ProcessSentencesResponseDto {
-    private List<String> notes;
+    private List<NoteDto> notes;
     private List<String> dictionary;
 
-    public List<String> getNotes() {
+    public List<NoteDto> getNotes() {
         return notes;
     }
 
-    public void setNotes(List<String> notes) {
+    public void setNotes(List<NoteDto> notes) {
         this.notes = notes;
     }
 

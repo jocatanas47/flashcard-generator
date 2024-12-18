@@ -2,6 +2,7 @@ package com.jovantanasijevic.flashcard_generator.controller;
 
 import com.jovantanasijevic.flashcard_generator.dto.ChangeEmailDto;
 import com.jovantanasijevic.flashcard_generator.dto.ChangePasswordDto;
+import com.jovantanasijevic.flashcard_generator.dto.NoteDto;
 import com.jovantanasijevic.flashcard_generator.service.UserService;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/user/process_sentences")
-    public List<String> processSentences(@RequestBody List<String> sentences) {
+    public List<NoteDto> processSentences(@RequestBody List<String> sentences) {
         return userService.processSentences(sentences);
     }
 }
