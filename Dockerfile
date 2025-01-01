@@ -1,14 +1,18 @@
+FROM maven:3.9.4-eclipse-temurin-21 as build
+
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
 FROM openjdk:21-slim
 
 WORKDIR /app
 
-COPY . .
-
-RUN ./mvnw clean package
-
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
