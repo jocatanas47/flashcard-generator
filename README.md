@@ -47,7 +47,7 @@ payload example:
 ```
 command:
 ```bash
-curl -X POST -u username:password -H "Content-Type: application/json" -d '["apple", "banana", "cherry"]' http://localhost:8080/user/load_dictionary
+curl -X POST -u username:password -H "Content-Type: application/json" -d '["Hund", "Katze", "machen"]' http://localhost:8080/user/load_dictionary
 ```
 ### POST /user/process_sentences
 process sentences to generate Anki flashcards based on the unknown words in the sentence  
@@ -60,5 +60,5 @@ payload example:
 ```
 command:
 ```bash
-curl -X POST -u username:password -H "Content-Type: application/json" -d '["This is an apple.", "I love eating bananas."]' http://localhost:8080/user/process_sentences
+curl -X POST -u username:password -H "Content-Type: application/json" -d '["Das ist ein Pferd.", "Ich möchte Bananen essen."]' http://localhost:8080/user/process_sentences
 ```
