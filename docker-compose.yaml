@@ -1,0 +1,25 @@
+services:
+  app:
+    image: jocatanas47/flashcard-app
+    environment:
+      - FLASK_APP_URL=http://flask-service:5000/process_sentences
+      - DATABASE_URL=jdbc:postgresql://db:5432/flashcards_db
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - flask-service
+
+  db:
+    image: jocatanas47/custom-postgres-image
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=your-database-name
+
+  flask-service:
+    image: jocatanas47/flashcard-service
+    environment:
+      - FLASK_APP_URL=http://flask-service:5000/process_sentences
