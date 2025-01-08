@@ -24,7 +24,7 @@ docker compose up --build
 
 ## Available HTTP Requests
 ### POST /register
-register a new user
+register a new user  
 payload example:
 ```json
 {
@@ -38,7 +38,7 @@ command:
 curl -X POST -H "Content-Type: application/json" -d '{"username": "john_doe", "email": "john.doe@example.com", "password": "securePassword123"}' http://localhost:8080/register
 ```
 ### POST /user/load_dictionary
-load a list of known words into the user's dictionary
+load a list of known words into the user's dictionary  
 payload example:
 ```json
 [
@@ -50,7 +50,7 @@ command:
 curl -X POST -u username:password -H "Content-Type: application/json" -d '["apple", "banana", "cherry"]' http://localhost:8080/user/load_dictionary
 ```
 ### POST /user/process_sentences
-process sentences to generate Anki flashcards based on the unknown words in the sentence
+process sentences to generate Anki flashcards based on the unknown words in the sentence  
 payload example:
 ```json
 [
